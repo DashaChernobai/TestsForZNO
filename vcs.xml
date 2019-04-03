@@ -30,6 +30,10 @@
           <option name="url" value="https://github.com/DashaChernobai/Firestore1.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/DashaChernobai/Firestore.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\User\StudioProjects" />

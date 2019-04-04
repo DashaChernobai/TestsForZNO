@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    Fragment Tasks = new Tasks();
+    Fragment MainFragment = new MainFragment();
 
     public void onMyClick(View view) {
 

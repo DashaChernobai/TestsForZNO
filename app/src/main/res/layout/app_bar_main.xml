@@ -21,34 +21,29 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/include"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".MainActivity"
-        tools:showIn="@layout/app_bar_main"
-        android:id="@+id/include">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        tools:showIn="@layout/app_bar_main">
 
     </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/btnStart"
-        android:layout_width="384dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:onClick="myButtonClickListener"
         android:text="Розпочати тест"
-        android:onClick="onMyClick"
         android:visibility="visible"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="right|center" />
+        app:layout_anchorGravity="right|center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textStart"
@@ -57,6 +52,8 @@
         android:text="Час становитися розумнішими!"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_anchor="@+id/btnStart"
-        app:layout_anchorGravity="top|center" />
+        app:layout_anchorGravity="top|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.design.widget.CoordinatorLayout>

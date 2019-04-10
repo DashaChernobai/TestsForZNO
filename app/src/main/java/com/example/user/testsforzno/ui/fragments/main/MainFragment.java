@@ -1,17 +1,22 @@
-package com.example.user.testsforzno;
+package com.example.user.testsforzno.ui.fragments.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-public class MainFragment extends Fragment {
+import com.example.user.testsforzno.R;
+import com.example.user.testsforzno.ui.base.BaseFragment;
+import com.example.user.testsforzno.ui.fragments.QuestionsFragment;
+
+public class MainFragment extends BaseFragment {
 
     private MainViewModel mViewModel;
+    private Button start;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -24,6 +29,18 @@ public class MainFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        start = view.findViewById(R.id.btnStart);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment(new QuestionsFragment());
+            }
+        });
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
@@ -31,5 +48,8 @@ public class MainFragment extends Fragment {
     }
 
 
-
+    @Override
+    public String getName() {
+        return "Main";
+    }
 }

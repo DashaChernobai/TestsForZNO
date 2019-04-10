@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.activities.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -25,35 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".MainActivity"
+        tools:context=".ui.activities.MainActivity"
         tools:showIn="@layout/app_bar_main">
 
     </android.support.constraint.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:onClick="myButtonClickListener"
-        android:text="Розпочати тест"
-        android:visibility="visible"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="right|center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textStart"
-        android:layout_width="wrap_content"
-        android:layout_height="74dp"
-        android:text="Час становитися розумнішими!"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_anchor="@+id/btnStart"
-        app:layout_anchorGravity="top|center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.design.widget.CoordinatorLayout>

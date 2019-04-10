@@ -1,4 +1,4 @@
-package com.example.user.testsforzno;
+package com.example.user.testsforzno.ui.fragments.main;
 
 import android.arch.lifecycle.ViewModel;
 

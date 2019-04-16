@@ -3,15 +3,15 @@ package com.example.user.testsforzno.ui.fragments;
 import java.lang.reflect.Array;
 
 public class Questions {
-    private int answer;
+    private String answer;
     private String question;
-    private String[] variants;
+    private String variants;
 
-    public int getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(int answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
@@ -23,11 +23,11 @@ public class Questions {
         this.question = question;
     }
 
-    public String[] getVariants() {
+    public String getVariants() {
         return variants;
     }
 
-    public void setVariants(String[] variants) {
+    public void setVariants(String variants) {
         this.variants = variants;
     }
 }

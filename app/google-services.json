@@ -21,6 +21,10 @@
             "package_name": "com.example.pupil.firestore",
             "certificate_hash": "964a79a1222e7cfeb18ba3d19f6bf331f6317b4a"
           }
+        },
+        {
+          "client_id": "601903124167-8vcvkhk9tjagbrujt9gffi0ut62n8q9h.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
@@ -54,6 +58,10 @@
             "package_name": "com.example.pupil.myfirstproject",
             "certificate_hash": "964a79a1222e7cfeb18ba3d19f6bf331f6317b4a"
           }
+        },
+        {
+          "client_id": "601903124167-8vcvkhk9tjagbrujt9gffi0ut62n8q9h.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
@@ -87,6 +95,18 @@
             "package_name": "com.example.user.testsforzno",
             "certificate_hash": "0018e0c1f743cf667866aa5c8f1f87de1eafd9d7"
           }
+        },
+        {
+          "client_id": "601903124167-ineauco9a57l0oclass4uroh4ccfdkri.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.user.testsforzno",
+            "certificate_hash": "964a79a1222e7cfeb18ba3d19f6bf331f6317b4a"
+          }
+        },
+        {
+          "client_id": "601903124167-8vcvkhk9tjagbrujt9gffi0ut62n8q9h.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [

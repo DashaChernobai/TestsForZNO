@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/btnStart"
-        android:layout_width="match_parent"
+        android:layout_width="324dp"
         android:layout_height="wrap_content"
 
 
@@ -25,7 +25,6 @@
         android:id="@+id/textStart"
         android:layout_width="wrap_content"
         android:layout_height="74dp"
-        android:layout_marginBottom="8dp"
         android:text="Час становитися розумнішими!"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_anchor="@+id/btnStart"

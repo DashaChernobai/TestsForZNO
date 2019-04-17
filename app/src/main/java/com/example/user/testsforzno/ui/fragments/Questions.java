@@ -1,17 +1,24 @@
 package com.example.user.testsforzno.ui.fragments;
 
+import com.google.firebase.firestore.PropertyName;
+
+import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
-public class Questions {
-    private String answer;
+public class Questions implements Serializable {
+    @PropertyName("answer")
+    private int answer;
+    @PropertyName("question")
     private String question;
-    private String variants;
+    @PropertyName("variants")
+    private ArrayList<String> variants;
 
-    public String getAnswer() {
+    public int getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(int answer) {
         this.answer = answer;
     }
 
@@ -23,11 +30,11 @@ public class Questions {
         this.question = question;
     }
 
-    public String getVariants() {
+    public ArrayList<String> getVariants() {
         return variants;
     }
 
-    public void setVariants(String variants) {
+    public void setVariants(ArrayList<String> variants) {
         this.variants = variants;
     }
 }

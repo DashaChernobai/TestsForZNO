@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -40,7 +41,9 @@ public class QuestionsFragment extends BaseFragment {
     CheckBox checkBox1;
     CheckBox checkBox2;
     CheckBox checkBox3;
-
+    Button buttonCheckAnswer;
+    int answer;
+    int a;
 
 
     public static QuestionsFragment newInstance() {
@@ -62,6 +65,7 @@ public class QuestionsFragment extends BaseFragment {
         checkBox1 = view.findViewById(R.id.checkBox1);
         checkBox2 = view.findViewById(R.id.checkBox2);
         checkBox3 = view.findViewById(R.id.checkBox3);
+       //buttonCheckAnswer = view.findViewById(R.id.buttonCheckAnswer);
 
         list = new ArrayList<>();
         dbInit();
@@ -71,7 +75,6 @@ public class QuestionsFragment extends BaseFragment {
                 getCollection();
             }
         }).start();
-//        getCollection();
         mViewModel.listMutableLiveData.observe(this, new Observer<List<Questions>>() {
             @Override
             public void onChanged(@Nullable List<Questions> questions) {
@@ -79,13 +82,28 @@ public class QuestionsFragment extends BaseFragment {
                 setUI(questions);
             }
         });
+        if (checkBox0.isSelected()) {
+            a = 0;
+        }
+        if (checkBox1.isSelected()) {
+            a = 1;
+        }
+        if (checkBox2.isSelected()) {
+            a = 2;
+        }
+        if (checkBox3.isSelected()) {
+            a = 3;
+        }
 
-
+        if (a == answer) {
+        } else {
+        }
     }
 
     private void setUI(List<Questions> ui) {
 
         int i = new Random().nextInt(ui.size());
+
         text.setText(ui.get(i).getQuestion());
         checkBox0.setText(ui.get(i).getVariants().get(0));
         checkBox1.setText(ui.get(i).getVariants().get(1));
@@ -105,28 +123,6 @@ public class QuestionsFragment extends BaseFragment {
             e.printStackTrace();
         }
 
-
-//        db.collection("Questions")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            QuerySnapshot snapshots = task.getResult();
-//                            for (QueryDocumentSnapshot document : snapshots) {
-//                                Questions questions = new Questions();
-//                                questions.setVariants((String[]) document.getData().get("variants"));
-//                                questions.setQuestion(document.getData().get("question").toString());
-//                                questions.setAnswer((int) document.getData().get("answer"));
-//                                list.add(questions);
-//                                Log.i("Firestore", document.getId() + " => ");
-//                            }
-//                            mViewModel.setList(list);
-//                        } else {
-//                            Log.w("Firestore", "Error getting documents.", task.getException());
-//                        }
-//                    }
-//                });
     }
 
 

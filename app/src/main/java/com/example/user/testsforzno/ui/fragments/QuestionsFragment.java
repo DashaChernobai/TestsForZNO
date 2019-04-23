@@ -123,8 +123,6 @@ public class QuestionsFragment extends BaseFragment {
         int i = new Random().nextInt(ui.size());
         questions = ui.get(i);
         text.setText(questions.getQuestion());
-
-
         checkBox0.setText(questions.getVariants().get(0));
         checkBox1.setText(questions.getVariants().get(1));
         checkBox2.setText(questions.getVariants().get(2));

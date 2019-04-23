@@ -38,6 +38,7 @@ public class MainFragment extends BaseFragment {
                 setFragment(new QuestionsFragment());
             }
         });
+
     }
 
     @Override

@@ -7,11 +7,11 @@
         <item
             android:id="@+id/nav_camera"
 
-            android:title="Themes" />
+            android:title="Розпочати спочатку" />
         <item
             android:id="@+id/nav_slideshow"
 
-            android:title="Statistics" />
+            android:title="Статистика" />
 
     </group>
 

@@ -32,7 +32,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class QuestionsFragment extends BaseFragment {
-
+    private Questions questions;
     private QuestionsViewModel mViewModel;
     TextView text;
     public ArrayList<Questions> list;
@@ -41,7 +41,8 @@ public class QuestionsFragment extends BaseFragment {
     CheckBox checkBox1;
     CheckBox checkBox2;
     CheckBox checkBox3;
-    Button buttonCheckAnswer;
+    Button CheckAnswer;
+    Button NextQuestion;
     int answer;
     int a;
 
@@ -65,7 +66,9 @@ public class QuestionsFragment extends BaseFragment {
         checkBox1 = view.findViewById(R.id.checkBox1);
         checkBox2 = view.findViewById(R.id.checkBox2);
         checkBox3 = view.findViewById(R.id.checkBox3);
-       //buttonCheckAnswer = view.findViewById(R.id.buttonCheckAnswer);
+        CheckAnswer = view.findViewById(R.id.CheckAnswer);
+        NextQuestion = view.findViewById(R.id.NextQuestion);
+        //buttonCheckAnswer = view.findViewById(R.id.buttonCheckAnswer);
 
         list = new ArrayList<>();
         dbInit();
@@ -84,20 +87,29 @@ public class QuestionsFragment extends BaseFragment {
         });
         if (checkBox0.isSelected()) {
             a = 0;
-        }
-        if (checkBox1.isSelected()) {
+        } else if (checkBox1.isSelected()) {
             a = 1;
-        }
-        if (checkBox2.isSelected()) {
+        } else if (checkBox2.isSelected()) {
             a = 2;
-        }
-        if (checkBox3.isSelected()) {
+        } else if (checkBox3.isSelected()) {
             a = 3;
         }
-
-        if (a == answer) {
-        } else {
-        }
+        CheckAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (a == questions.getAnswer()) {
+                    CheckAnswer.setText("Правильно");
+                } else {
+                    CheckAnswer.setText("Неправильно");
+                }
+            }
+        });
+        NextQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment(new QuestionsFragment());
+            }
+        });
     }
 
     private void setUI(List<Questions> ui) {

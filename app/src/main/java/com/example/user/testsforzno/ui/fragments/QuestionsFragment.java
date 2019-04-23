@@ -32,9 +32,10 @@ import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class QuestionsFragment extends BaseFragment {
-    private Questions questions;
-    private QuestionsViewModel mViewModel;
+    public Questions questions;
+    public QuestionsViewModel mViewModel;
     TextView text;
+    TextView answer;
     public ArrayList<Questions> list;
     public FirebaseFirestore db;
     CheckBox checkBox0;
@@ -43,7 +44,6 @@ public class QuestionsFragment extends BaseFragment {
     CheckBox checkBox3;
     Button CheckAnswer;
     Button NextQuestion;
-    int answer;
     int a;
 
 
@@ -62,13 +62,14 @@ public class QuestionsFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(QuestionsViewModel.class);
         text = view.findViewById(R.id.text);
+        answer = view.findViewById(R.id.answer);
         checkBox0 = view.findViewById(R.id.checkBox0);
         checkBox1 = view.findViewById(R.id.checkBox1);
         checkBox2 = view.findViewById(R.id.checkBox2);
         checkBox3 = view.findViewById(R.id.checkBox3);
         CheckAnswer = view.findViewById(R.id.CheckAnswer);
         NextQuestion = view.findViewById(R.id.NextQuestion);
-        //buttonCheckAnswer = view.findViewById(R.id.buttonCheckAnswer);
+
 
         list = new ArrayList<>();
         dbInit();
@@ -85,22 +86,26 @@ public class QuestionsFragment extends BaseFragment {
                 setUI(questions);
             }
         });
+
         if (checkBox0.isSelected()) {
             a = 0;
-        } else if (checkBox1.isSelected()) {
+        }
+        if (checkBox1.isSelected()) {
             a = 1;
-        } else if (checkBox2.isSelected()) {
+        }
+        if (checkBox2.isSelected()) {
             a = 2;
-        } else if (checkBox3.isSelected()) {
+        }
+        if (checkBox3.isSelected()) {
             a = 3;
         }
         CheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (a == questions.getAnswer()) {
-                    CheckAnswer.setText("Правильно");
+                    CheckAnswer.setText("Правильно!");
                 } else {
-                    CheckAnswer.setText("Неправильно");
+                    CheckAnswer.setText("Неправильно!");
                 }
             }
         });
@@ -108,6 +113,7 @@ public class QuestionsFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 setFragment(new QuestionsFragment());
+
             }
         });
     }
@@ -115,12 +121,14 @@ public class QuestionsFragment extends BaseFragment {
     private void setUI(List<Questions> ui) {
 
         int i = new Random().nextInt(ui.size());
+        questions = ui.get(i);
+        text.setText(questions.getQuestion());
 
-        text.setText(ui.get(i).getQuestion());
-        checkBox0.setText(ui.get(i).getVariants().get(0));
-        checkBox1.setText(ui.get(i).getVariants().get(1));
-        checkBox2.setText(ui.get(i).getVariants().get(2));
-        checkBox3.setText(ui.get(i).getVariants().get(3));
+
+        checkBox0.setText(questions.getVariants().get(0));
+        checkBox1.setText(questions.getVariants().get(1));
+        checkBox2.setText(questions.getVariants().get(2));
+        checkBox3.setText(questions.getVariants().get(3));
 
 
     }
@@ -138,7 +146,7 @@ public class QuestionsFragment extends BaseFragment {
     }
 
 
-    private void dbInit() {
+    public void dbInit() {
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setTimestampsInSnapshotsEnabled(true)

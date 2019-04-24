@@ -35,7 +35,6 @@ public class QuestionsFragment extends BaseFragment {
     public Questions questions;
     public QuestionsViewModel mViewModel;
     TextView text;
-    TextView answer;
     public ArrayList<Questions> list;
     public FirebaseFirestore db;
     CheckBox checkBox0;
@@ -45,7 +44,7 @@ public class QuestionsFragment extends BaseFragment {
     Button CheckAnswer;
     Button NextQuestion;
     int a;
-    boolean i=false;
+    boolean i = false;
 
 
     public static QuestionsFragment newInstance() {
@@ -88,84 +87,75 @@ public class QuestionsFragment extends BaseFragment {
         });
 
 
-        if (checkBox0.isSelected() && (questions.getAnswer() == 0)) {
+        if (checkBox0.isChecked() && questions.getAnswer() == 0) {
             i = true;
-        } else if (checkBox0.isSelected() && (questions.getAnswer() != 0)) {
-            i = false;
-        }
-        if (checkBox1.isSelected() && (questions.getAnswer() == 1)) {
+        } else if (checkBox1.isChecked() && questions.getAnswer() == 1) {
             i = true;
-        } else if (checkBox1.isSelected() && (questions.getAnswer() != 1)) {
-            i = false;
-        }
-        if (checkBox2.isSelected() && (questions.getAnswer() == 2)) {
+        } else if (checkBox2.isChecked() && questions.getAnswer() == 2) {
             i = true;
-        } else if (checkBox2.isSelected() && (questions.getAnswer() != 2)) {
-            i = false;
-        }
-        if (checkBox3.isSelected() && (questions.getAnswer() == 3)) {
+        } else if (checkBox3.isChecked() && questions.getAnswer() == 3) {
             i = true;
-        } else if (checkBox3.isSelected() && (questions.getAnswer() != 3)) {
-            i = false;
+        }else{
+            i=false;
         }
 
-        CheckAnswer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (i = true) {
-                    CheckAnswer.setText("Правильно");
-                } else {
-                    CheckAnswer.setText("Неправильно");
+            CheckAnswer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (i = true) {
+                        CheckAnswer.setText("Правильно");
+                    } else {
+                        CheckAnswer.setText("Неправильно");
+                    }
                 }
-            }
-        });
-        NextQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setFragment(new QuestionsFragment());
+            });
+            NextQuestion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setFragment(new QuestionsFragment());
 
-            }
-        });
-    }
-
-    private void setUI(List<Questions> ui) {
-
-        int i = new Random().nextInt(ui.size());
-        questions = ui.get(i);
-        text.setText(questions.getQuestion());
-        checkBox0.setText(questions.getVariants().get(0));
-        checkBox1.setText(questions.getVariants().get(1));
-        checkBox2.setText(questions.getVariants().get(2));
-        checkBox3.setText(questions.getVariants().get(3));
-
-
-    }
-
-    public void getCollection() {
-        try {
-            List<Questions> questions = Tasks.await(db.collection("Questions").get()).toObjects(Questions.class);
-            mViewModel.setList(questions);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+                }
+            });
         }
 
+        private void setUI (List<Questions> ui){
+
+            int i = new Random().nextInt(ui.size());
+            questions = ui.get(i);
+            text.setText(questions.getQuestion());
+            checkBox0.setText(questions.getVariants().get(0));
+            checkBox1.setText(questions.getVariants().get(1));
+            checkBox2.setText(questions.getVariants().get(2));
+            checkBox3.setText(questions.getVariants().get(3));
+
+
+        }
+
+        public void getCollection () {
+            try {
+                List<Questions> questions = Tasks.await(db.collection("Questions").get()).toObjects(Questions.class);
+                mViewModel.setList(questions);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        public void dbInit () {
+            db = FirebaseFirestore.getInstance();
+            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                    .setTimestampsInSnapshotsEnabled(true)
+                    .build();
+            db.setFirestoreSettings(settings);
+        }
+
+        @Override
+        public String getName () {
+            return "Questions";
+        }
+
+
     }
-
-
-    public void dbInit() {
-        db = FirebaseFirestore.getInstance();
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setTimestampsInSnapshotsEnabled(true)
-                .build();
-        db.setFirestoreSettings(settings);
-    }
-
-    @Override
-    public String getName() {
-        return "Questions";
-    }
-
-
-}

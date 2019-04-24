@@ -87,7 +87,7 @@ public class QuestionsFragment extends BaseFragment {
         });
 
         if (checkBox0.isSelected()) {
-            a = 0;
+            //a = 0;
         }
         if (checkBox1.isSelected()) {
             a = 1;

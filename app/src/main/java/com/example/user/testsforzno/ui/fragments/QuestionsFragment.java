@@ -45,6 +45,7 @@ public class QuestionsFragment extends BaseFragment {
     Button CheckAnswer;
     Button NextQuestion;
     int a;
+    boolean i=false;
 
 
     public static QuestionsFragment newInstance() {
@@ -86,25 +87,35 @@ public class QuestionsFragment extends BaseFragment {
             }
         });
 
-        if (checkBox0.isSelected()) {
-            //a = 0;
+
+        if (checkBox0.isSelected() && (questions.getAnswer() == 0)) {
+            i = true;
+        } else if (checkBox0.isSelected() && (questions.getAnswer() != 0)) {
+            i = false;
         }
-        if (checkBox1.isSelected()) {
-            a = 1;
+        if (checkBox1.isSelected() && (questions.getAnswer() == 1)) {
+            i = true;
+        } else if (checkBox1.isSelected() && (questions.getAnswer() != 1)) {
+            i = false;
         }
-        if (checkBox2.isSelected()) {
-            a = 2;
+        if (checkBox2.isSelected() && (questions.getAnswer() == 2)) {
+            i = true;
+        } else if (checkBox2.isSelected() && (questions.getAnswer() != 2)) {
+            i = false;
         }
-        if (checkBox3.isSelected()) {
-            a = 3;
+        if (checkBox3.isSelected() && (questions.getAnswer() == 3)) {
+            i = true;
+        } else if (checkBox3.isSelected() && (questions.getAnswer() != 3)) {
+            i = false;
         }
+
         CheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (a == questions.getAnswer()) {
-                    CheckAnswer.setText("Правильно!");
+                if (i = true) {
+                    CheckAnswer.setText("Правильно");
                 } else {
-                    CheckAnswer.setText("Неправильно!");
+                    CheckAnswer.setText("Неправильно");
                 }
             }
         });

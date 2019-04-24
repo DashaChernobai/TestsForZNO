@@ -62,7 +62,6 @@ public class QuestionsFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(QuestionsViewModel.class);
         text = view.findViewById(R.id.text);
-        answer = view.findViewById(R.id.answer);
         checkBox0 = view.findViewById(R.id.checkBox0);
         checkBox1 = view.findViewById(R.id.checkBox1);
         checkBox2 = view.findViewById(R.id.checkBox2);

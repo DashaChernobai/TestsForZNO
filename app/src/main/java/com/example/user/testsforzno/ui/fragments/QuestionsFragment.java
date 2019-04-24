@@ -35,6 +35,7 @@ public class QuestionsFragment extends BaseFragment {
     public Questions questions;
     public QuestionsViewModel mViewModel;
     TextView text;
+    TextView answer;
     public ArrayList<Questions> list;
     public FirebaseFirestore db;
     CheckBox checkBox0;
@@ -43,7 +44,7 @@ public class QuestionsFragment extends BaseFragment {
     CheckBox checkBox3;
     Button CheckAnswer;
     Button NextQuestion;
-    int a, b;
+    int a;
 
 
     public static QuestionsFragment newInstance() {
@@ -61,6 +62,7 @@ public class QuestionsFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(QuestionsViewModel.class);
         text = view.findViewById(R.id.text);
+        answer = view.findViewById(R.id.answer);
         checkBox0 = view.findViewById(R.id.checkBox0);
         checkBox1 = view.findViewById(R.id.checkBox1);
         checkBox2 = view.findViewById(R.id.checkBox2);
@@ -85,32 +87,28 @@ public class QuestionsFragment extends BaseFragment {
             }
         });
 
-
+        if (checkBox0.isSelected()) {
+            a = 0;
+        }
+        if (checkBox1.isSelected()) {
+            a = 1;
+        }
+        if (checkBox2.isSelected()) {
+            a = 2;
+        }
+        if (checkBox3.isSelected()) {
+            a = 3;
+        }
         CheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkBox0.isSelected()) {
-                    a = 0;
-                }
-                if (checkBox1.isSelected()) {
-                    a = 1;
-                }
-                if (checkBox2.isSelected()) {
-                    a = 2;
-                }
-                if (checkBox3.isSelected()) {
-                    a = 3;
-                }
-                b = questions.getAnswer();
-                if (a == b) {
+                if (a == questions.getAnswer()) {
                     CheckAnswer.setText("Правильно!");
                 } else {
                     CheckAnswer.setText("Неправильно!");
                 }
             }
         });
-
-
         NextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

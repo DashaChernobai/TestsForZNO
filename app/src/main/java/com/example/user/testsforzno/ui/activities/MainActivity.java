@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.user.testsforzno.ui.fragments.main.MainFragment;
 import com.example.user.testsforzno.R;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity
 
         setFragment();
 
+
     }
 
 
@@ -73,9 +75,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

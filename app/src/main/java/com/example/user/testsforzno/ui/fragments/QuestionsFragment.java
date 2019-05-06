@@ -2,6 +2,8 @@ package com.example.user.testsforzno.ui.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.user.testsforzno.R;
@@ -35,7 +38,6 @@ public class QuestionsFragment extends BaseFragment {
     public Questions questions;
     public QuestionsViewModel mViewModel;
     TextView text;
-    TextView answer;
     public ArrayList<Questions> list;
     public FirebaseFirestore db;
     CheckBox checkBox0;
@@ -45,7 +47,7 @@ public class QuestionsFragment extends BaseFragment {
     Button CheckAnswer;
     Button NextQuestion;
     int a;
-    boolean i=false;
+    boolean i = false;
 
 
     public static QuestionsFragment newInstance() {
@@ -88,34 +90,40 @@ public class QuestionsFragment extends BaseFragment {
         });
 
 
-        if (checkBox0.isSelected() && (questions.getAnswer() == 0)) {
-            i = true;
-        } else if (checkBox0.isSelected() && (questions.getAnswer() != 0)) {
-            i = false;
-        }
-        if (checkBox1.isSelected() && (questions.getAnswer() == 1)) {
-            i = true;
-        } else if (checkBox1.isSelected() && (questions.getAnswer() != 1)) {
-            i = false;
-        }
-        if (checkBox2.isSelected() && (questions.getAnswer() == 2)) {
-            i = true;
-        } else if (checkBox2.isSelected() && (questions.getAnswer() != 2)) {
-            i = false;
-        }
-        if (checkBox3.isSelected() && (questions.getAnswer() == 3)) {
-            i = true;
-        } else if (checkBox3.isSelected() && (questions.getAnswer() != 3)) {
-            i = false;
-        }
+        checkBox0.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                a = 0;
+            }
+        });
+        checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                a = 1;
+            }
+        });
+        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                a = 2;
+            }
+        });
+        checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                a = 3;
+            }
+        });
 
         CheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (i = true) {
+                if (a==questions.getAnswer()) {
                     CheckAnswer.setText("Правильно");
+                    CheckAnswer.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
                 } else {
                     CheckAnswer.setText("Неправильно");
+                    CheckAnswer.getBackground().setColorFilter(Color.parseColor("#80ff0000"), PorterDuff.Mode.DARKEN);
                 }
             }
         });

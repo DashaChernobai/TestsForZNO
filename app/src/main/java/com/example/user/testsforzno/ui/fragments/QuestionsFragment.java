@@ -2,6 +2,8 @@ package com.example.user.testsforzno.ui.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.user.testsforzno.R;
@@ -87,75 +90,90 @@ public class QuestionsFragment extends BaseFragment {
         });
 
 
-        if (checkBox0.isChecked() && questions.getAnswer() == 0) {
-            i = true;
-        } else if (checkBox1.isChecked() && questions.getAnswer() == 1) {
-            i = true;
-        } else if (checkBox2.isChecked() && questions.getAnswer() == 2) {
-            i = true;
-        } else if (checkBox3.isChecked() && questions.getAnswer() == 3) {
-            i = true;
-        }else{
-            i=false;
-        }
-
-            CheckAnswer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (i = true) {
-                        CheckAnswer.setText("Правильно");
-                    } else {
-                        CheckAnswer.setText("Неправильно");
-                    }
-                }
-            });
-            NextQuestion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setFragment(new QuestionsFragment());
-
-                }
-            });
-        }
-
-        private void setUI (List<Questions> ui){
-
-            int i = new Random().nextInt(ui.size());
-            questions = ui.get(i);
-            text.setText(questions.getQuestion());
-            checkBox0.setText(questions.getVariants().get(0));
-            checkBox1.setText(questions.getVariants().get(1));
-            checkBox2.setText(questions.getVariants().get(2));
-            checkBox3.setText(questions.getVariants().get(3));
-
-
-        }
-
-        public void getCollection () {
-            try {
-                List<Questions> questions = Tasks.await(db.collection("Questions").get()).toObjects(Questions.class);
-                mViewModel.setList(questions);
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        checkBox0.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                a = 0;
             }
+        });
+        checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                a = 1;
+            }
+        });
+        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                a = 2;
+            }
+        });
+        checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                a = 3;
+            }
+        });
 
-        }
+        CheckAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (a==questions.getAnswer()) {
+                    CheckAnswer.setText("Правильно");
+                    CheckAnswer.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
+                } else {
+                    CheckAnswer.setText("Неправильно");
+                    CheckAnswer.getBackground().setColorFilter(Color.parseColor("#80ff0000"), PorterDuff.Mode.DARKEN);
+                }
+            }
+        });
+        NextQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment(new QuestionsFragment());
 
+            }
+        });
+    }
 
-        public void dbInit () {
-            db = FirebaseFirestore.getInstance();
-            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                    .setTimestampsInSnapshotsEnabled(true)
-                    .build();
-            db.setFirestoreSettings(settings);
-        }
+    private void setUI(List<Questions> ui) {
 
-        @Override
-        public String getName () {
-            return "Questions";
-        }
+        int i = new Random().nextInt(ui.size());
+        questions = ui.get(i);
+        text.setText(questions.getQuestion());
+        checkBox0.setText(questions.getVariants().get(0));
+        checkBox1.setText(questions.getVariants().get(1));
+        checkBox2.setText(questions.getVariants().get(2));
+        checkBox3.setText(questions.getVariants().get(3));
 
 
     }
+
+    public void getCollection() {
+        try {
+            List<Questions> questions = Tasks.await(db.collection("Questions").get()).toObjects(Questions.class);
+            mViewModel.setList(questions);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void dbInit() {
+        db = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setTimestampsInSnapshotsEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
+    }
+
+    @Override
+    public String getName() {
+        return "Questions";
+    }
+
+
+}

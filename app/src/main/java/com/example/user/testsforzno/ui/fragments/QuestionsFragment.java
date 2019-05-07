@@ -165,6 +165,7 @@ public class QuestionsFragment extends BaseFragment {
     }
 
 
+    
     public void dbInit() {
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()

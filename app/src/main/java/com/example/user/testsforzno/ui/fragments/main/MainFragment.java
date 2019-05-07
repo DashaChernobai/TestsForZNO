@@ -12,12 +12,13 @@ import android.widget.Button;
 import com.example.user.testsforzno.R;
 import com.example.user.testsforzno.ui.base.BaseFragment;
 import com.example.user.testsforzno.ui.fragments.QuestionsFragment;
+import com.example.user.testsforzno.ui.fragments.StatisticsFragment;
 
 public class MainFragment extends BaseFragment {
 
     private MainViewModel mViewModel;
     private Button start;
-
+    private Button btnStatisics;
     public static MainFragment newInstance() {
         return new MainFragment();
     }
@@ -35,10 +36,16 @@ public class MainFragment extends BaseFragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new QuestionsFragment());
+                setFragment1(new QuestionsFragment());
             }
         });
-
+        btnStatisics = view.findViewById(R.id.btnStatisics);
+        btnStatisics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment2(new StatisticsFragment());
+            }
+        });
     }
 
     @Override

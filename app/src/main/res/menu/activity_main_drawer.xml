@@ -5,11 +5,11 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_start"
 
             android:title="Розпочати спочатку" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_statistics"
 
             android:title="Статистика" />
 

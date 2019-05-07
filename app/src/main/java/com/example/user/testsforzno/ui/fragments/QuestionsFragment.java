@@ -35,6 +35,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class QuestionsFragment extends BaseFragment {
+
     public Questions questions;
     public QuestionsViewModel mViewModel;
     TextView text;
@@ -46,7 +47,8 @@ public class QuestionsFragment extends BaseFragment {
     CheckBox checkBox3;
     Button CheckAnswer;
     Button NextQuestion;
-    int a;
+    protected static int sum=0;
+    private int a;
     boolean i = false;
 
 
@@ -118,7 +120,7 @@ public class QuestionsFragment extends BaseFragment {
         CheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (a==questions.getAnswer()) {
+                if (a == questions.getAnswer()) {
                     CheckAnswer.setText("Правильно");
                     CheckAnswer.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
                 } else {
@@ -130,7 +132,8 @@ public class QuestionsFragment extends BaseFragment {
         NextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new QuestionsFragment());
+                setFragment1(new QuestionsFragment());
+                sum++;
 
             }
         });

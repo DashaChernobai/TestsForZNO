@@ -12,13 +12,12 @@ import android.widget.Button;
 import com.example.user.testsforzno.R;
 import com.example.user.testsforzno.ui.base.BaseFragment;
 import com.example.user.testsforzno.ui.fragments.QuestionsFragment;
-import com.example.user.testsforzno.ui.fragments.StatisticsFragment;
 
 public class MainFragment extends BaseFragment {
 
     private MainViewModel mViewModel;
     private Button start;
-    private Button btnStatisics;
+    private Button close1;
     public static MainFragment newInstance() {
         return new MainFragment();
     }
@@ -33,19 +32,20 @@ public class MainFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         start = view.findViewById(R.id.btnStart);
+        close1 = view.findViewById(R.id.close1);
+        close1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment1(new QuestionsFragment());
+                setFragment(new QuestionsFragment());
             }
         });
-        btnStatisics = view.findViewById(R.id.btnStatisics);
-        btnStatisics.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setFragment2(new StatisticsFragment());
-            }
-        });
+
     }
 
     @Override

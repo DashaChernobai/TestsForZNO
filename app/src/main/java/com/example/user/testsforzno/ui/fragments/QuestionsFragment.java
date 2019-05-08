@@ -47,9 +47,8 @@ public class QuestionsFragment extends BaseFragment {
     CheckBox checkBox3;
     Button CheckAnswer;
     Button NextQuestion;
-    protected static int sum=0;
+    Button close2;
     private int a;
-    boolean i = false;
 
 
     public static QuestionsFragment newInstance() {
@@ -73,6 +72,7 @@ public class QuestionsFragment extends BaseFragment {
         checkBox3 = view.findViewById(R.id.checkBox3);
         CheckAnswer = view.findViewById(R.id.CheckAnswer);
         NextQuestion = view.findViewById(R.id.NextQuestion);
+        close2 = view.findViewById(R.id.close2);
 
 
         list = new ArrayList<>();
@@ -91,7 +91,14 @@ public class QuestionsFragment extends BaseFragment {
             }
         });
 
+        close2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
 
+
+            }
+        });
         checkBox0.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -132,8 +139,8 @@ public class QuestionsFragment extends BaseFragment {
         NextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment1(new QuestionsFragment());
-                sum++;
+                setFragment(new QuestionsFragment());
+
 
             }
         });

@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.example.user.testsforzno.R;
 import com.example.user.testsforzno.ui.fragments.QuestionsFragment;
-import com.example.user.testsforzno.ui.fragments.StatisticsFragment;
 
 public abstract class BaseFragment extends Fragment implements IFragment {
 
@@ -22,14 +21,11 @@ public abstract class BaseFragment extends Fragment implements IFragment {
 
 
 
-    public void setFragment1(QuestionsFragment fragment) {
+    public void setFragment(QuestionsFragment fragment) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.include, fragment, fragment.getName()).commit();
     }
-    public void setFragment2(StatisticsFragment fragment) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.include, fragment, fragment.getName()).commit();
-    }
+
 
 
 }
